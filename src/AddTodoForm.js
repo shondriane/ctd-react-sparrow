@@ -1,5 +1,5 @@
 import React from "react";
-
+import TodoList from "./TodoList";
 /* what you type into search bar*/
 function AddTodoForm({onAddTodo}) {
   const [todoTitle, setTodoTitle] = React.useState("");
@@ -7,6 +7,7 @@ function AddTodoForm({onAddTodo}) {
     let newTodoTitle = event.target.value;
     console.log(newTodoTitle);
     setTodoTitle(newTodoTitle);
+
   };
   /* when you hit submit*/
   const handleAddTodo = (event) => {
@@ -15,6 +16,7 @@ function AddTodoForm({onAddTodo}) {
     console.log(todoTitle); 
     onAddTodo({ title: todoTitle, id: Date.now() });
     setTodoTitle('');
+
   };
   return (
     <form onSubmit={handleAddTodo}>
