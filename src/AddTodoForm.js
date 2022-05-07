@@ -1,33 +1,33 @@
 import React from "react";
 import TodoList from "./TodoList";
+import InputWithLabel from "./InputWithLabel";
 /* what you type into search bar*/
-function AddTodoForm({onAddTodo}) {
+function AddTodoForm({ onAddTodo }) {
   const [todoTitle, setTodoTitle] = React.useState("");
   const handleTitleChange = (event) => {
     let newTodoTitle = event.target.value;
     console.log(newTodoTitle);
     setTodoTitle(newTodoTitle);
-
   };
   /* when you hit submit*/
   const handleAddTodo = (event) => {
     event.preventDefault();
-    
-    console.log(todoTitle); 
-    onAddTodo({ title: todoTitle, id: Date.now() });
-    setTodoTitle('');
 
+    console.log(todoTitle);
+    onAddTodo({ title: todoTitle, id: Date.now() });
+    setTodoTitle("");
   };
   return (
     <form onSubmit={handleAddTodo}>
-      <label htmlFor="todoTitle"> Title </label>
-      <input
+    
+      <InputWithLabel
         type="text"
         value={todoTitle}
         id="todoTitle"
-        name="title"
-        onChange={handleTitleChange}
-      ></input>
+        onInputChange={handleTitleChange}
+      >
+        <strong>Title:</strong> 
+      </InputWithLabel>
       <button type="submit"> Add</button>
     </form>
   );
