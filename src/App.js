@@ -30,7 +30,6 @@ function App() {
   /*gets data from airtable*/
   React.useEffect(() => {
     setIsLoading(true);
-
     fetch(
       `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default`,
       {
