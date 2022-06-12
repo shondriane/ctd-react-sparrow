@@ -2,6 +2,30 @@ import React from "react";
 import AddTodoForm from "./AddTodoForm";
 import TodoList from "./TodoList";
 
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+
+import Airtable from "airtable";
+
+/*
+const base = new Airtable({ apiKey: "keyTNFIV8BcL0cHj3" }).base(
+  `appNW455ddtN8Yg64`
+);
+const table = base(`todo`);
+
+const getRecords = async()=>{
+  const records = await table.select().firstPage();
+  console.log(records);
+};
+getRecords();
+const createRecord = async(fields)=>{
+  const createdRecord = await table.create(fields);
+  console.log(createdRecord);
+
+}
+createRecord({
+  Title: "Help"
+});
+*/
 /*Side-Effects to stores the todoList from the browser's local storage and 
 retrieve it after browser refreshes. 
 
@@ -16,7 +40,7 @@ to clear the list set useSemiPersistentStae to an empty string []*/
 
 function App() {
   const [todoList, setTodoList] = React.useState(
-    JSON.parse(localStorage.getItem("savedTodoList")) || []
+    JSON.parse(localStorage.getItem("savedTodoList"))
   );
   const [isLoading, setIsLoading] = React.useState(true);
 
@@ -29,52 +53,91 @@ function App() {
 
   /*gets data from airtable*/
   React.useEffect(() => {
-    setIsLoading(true);
-    fetch(
-      `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default`,
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
-        },
-      }
-    )
-      .then((response) => response.json())
-      .then((result) => {
-        console.log(result.records);
-        setTodoList(result.records);
-        setIsLoading(false);
-      });
+    const getData = async () => {
+      const response = await fetch(
+        `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/todo`,
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const json = await response.json();
+      setTodoList(json.records);
+      setIsLoading(false);
+    };
+    getData();
   }, []);
-
-  //fetch request with POST
 
   /*adds new todo list item to the existing list*/
 
-  const addTodo = (newTodo) => {
+  const addTodo = async (newTodo) => {
     console.log([...todoList, newTodo]);
-    return setTodoList([...todoList, newTodo]);
+    const response = await fetch(
+      `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/todo`,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+          records: [
+            {
+              fields: {
+                Title: newTodo.fields.Title,
+              },
+            },
+          ],
+        }),
+      }
+    );
+    const json = await response.json();
+    console.log(json);
+    return setTodoList([...todoList, ...json.records]);
   };
-
+  //Create Record in Airtable
+  /* */
   /*removes todoList item*/
 
   const removeTodo = (id) => {
     const newList = todoList.filter((item) => item.id !== id);
     setTodoList(newList);
   };
+
   return (
     /*fragment wrapps sibling elements into a single top-level
     element*/
 
     <React.Fragment>
-      <h1> Todo List</h1>
+      <h1> Todo list </h1>
+
       <hr />
 
-      <AddTodoForm onAddTodo={addTodo} />
-      {isLoading ? (
-        <p>Loading ....</p>
-      ) : (
-        <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
-      )}
+      <BrowserRouter>
+        <div>
+          <nav>
+            <Link to="/">
+              {" "}
+              What needs to get done? <br></br>
+            </Link>
+            <Link to="/new"> Add new Items</Link>
+          </nav>
+          <Routes>
+            <Route path="/new" element={<AddTodoForm onAddTodo={addTodo} />} />
+
+            <Route
+              index
+              exact
+              path="/"
+              element={
+                <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+              }
+            />
+          </Routes>
+        </div>
+      </BrowserRouter>
     </React.Fragment>
   );
 }
