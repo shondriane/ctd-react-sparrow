@@ -1,10 +1,11 @@
 import React from "react";
 import AddTodoForm from "./AddTodoForm";
 import TodoList from "./TodoList";
+import style from "./TodoListItem.module.css"
+import {FaClipboardCheck} from 'react-icons/fa';
 
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
-import Airtable from "airtable";
 
 /*
 const base = new Airtable({ apiKey: "keyTNFIV8BcL0cHj3" }).base(
@@ -97,8 +98,7 @@ function App() {
     console.log(json);
     return setTodoList([...todoList, ...json.records]);
   };
-  //Create Record in Airtable
-  /* */
+ 
   /*removes todoList item*/
 
   const removeTodo = (id) => {
@@ -106,23 +106,25 @@ function App() {
     setTodoList(newList);
   };
 
+  
+
   return (
     /*fragment wrapps sibling elements into a single top-level
     element*/
 
     <React.Fragment>
-      <h1> Todo list </h1>
+      <h1> <FaClipboardCheck/> To-Do List </h1>
 
       <hr />
 
       <BrowserRouter>
-        <div>
-          <nav>
-            <Link to="/">
+        <div class = {style.container}>
+          <nav class = {style.nav}>
+            <Link class={style.font} to="/">
               {" "}
-              What needs to get done? <br></br>
+              To-do List <br></br>
             </Link>
-            <Link to="/new"> Add new Items</Link>
+            <Link class={style.font}to="/new"> Add new Items</Link>
           </nav>
           <Routes>
             <Route path="/new" element={<AddTodoForm onAddTodo={addTodo} />} />
@@ -132,7 +134,7 @@ function App() {
               exact
               path="/"
               element={
-                <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+                <TodoList  todoList={todoList} onRemoveTodo={removeTodo} />
               }
             />
           </Routes>
