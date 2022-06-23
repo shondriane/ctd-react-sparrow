@@ -122,9 +122,9 @@ function App() {
           <nav class = {style.nav}>
             <Link class={style.font} to="/">
               {" "}
-              To-do List <br></br>
+              Current to-do items <br></br>
             </Link>
-            <Link class={style.font}to="/new"> Add new Items</Link>
+            <Link class={style.font}to="/new"> Add new items</Link>
           </nav>
           <Routes>
             <Route path="/new" element={<AddTodoForm onAddTodo={addTodo} />} />
