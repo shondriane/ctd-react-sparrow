@@ -1,5 +1,6 @@
 import React from "react";
 import InputWithLabel from "./InputWithLabel";
+import style from "./TodoListItem.module.css";
 
 
 /* what you type into search bar*/
@@ -25,10 +26,10 @@ function AddTodoForm({ onAddTodo }) {
  
 
   return (
-    <form onSubmit={handleAddTodo}>
-      <InputWithLabel
+    <form class ={style.user} onSubmit={handleAddTodo}>
+      <InputWithLabel 
         type="text"
-        value={todoTitle}
+        value={todoTitle} 
         id="todoTitle"
         onInputChange={handleTitleChange}
       >
