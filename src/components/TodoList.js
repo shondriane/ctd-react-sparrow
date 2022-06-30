@@ -1,7 +1,7 @@
 import React from "react";
 import TodoListItem from "./TodoListItem";
 import style from "./TodoListItem.module.css"
-
+import PropTypes from "prop-types";
 
 /* Creation of the todolist and mapping it through an array*/
 function TodoList({todoList,onRemoveTodo}) {
@@ -10,10 +10,14 @@ function TodoList({todoList,onRemoveTodo}) {
   
     <ul>
       {todoList.map((todo) => {
-        return <TodoListItem class ={style.listItem} key={todo.id} todo={todo} onRemoveTodo={onRemoveTodo} />;
+        return <TodoListItem className ={style.listItem} key={todo.id} todo={todo} onRemoveTodo={onRemoveTodo} />;
       })}
     </ul>
   );
 }
-
+TodoList.propTypes ={
+  todoList: PropTypes.array
+ 
+  
+}
 export default TodoList;
