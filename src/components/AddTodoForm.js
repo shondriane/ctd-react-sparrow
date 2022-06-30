@@ -1,6 +1,7 @@
 import React from "react";
 import InputWithLabel from "./InputWithLabel";
 import style from "./TodoListItem.module.css";
+import PropTypes from "prop-types";
 
 
 /* what you type into search bar*/
@@ -11,6 +12,9 @@ function AddTodoForm({ onAddTodo }) {
     console.log(newTodoTitle);
     setTodoTitle(newTodoTitle);
   };
+  AddTodoForm.propTypes ={
+    onAddTodo: PropTypes.func
+  }
   /* when you hit submit*/
   const handleAddTodo = (event) => {
     event.preventDefault();
@@ -26,7 +30,7 @@ function AddTodoForm({ onAddTodo }) {
  
 
   return (
-    <form class ={style.user} onSubmit={handleAddTodo}>
+    <form className ={style.user} onSubmit={handleAddTodo}>
       <InputWithLabel 
         type="text"
         value={todoTitle} 

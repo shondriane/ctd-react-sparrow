@@ -1,7 +1,7 @@
 import React from "react";
-import AddTodoForm from "./AddTodoForm";
-import TodoList from "./TodoList";
-import style from "./TodoListItem.module.css"
+import AddTodoForm from "./components/AddTodoForm";
+import TodoList from "./components/TodoList";
+import style from "./components/TodoListItem.module.css"
 import {FaClipboardCheck} from 'react-icons/fa';
 
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
@@ -118,13 +118,13 @@ function App() {
       <hr />
 
       <BrowserRouter>
-        <div class = {style.container}>
-          <nav class = {style.nav}>
-            <Link class={style.font} to="/">
+        <div className = {style.container}>
+          <nav className = {style.nav}>
+            <Link className={style.font} to="/">
               {" "}
               Current to-do items <br></br>
             </Link>
-            <Link class={style.font}to="/new"> Add new items</Link>
+            <Link className={style.font}to="/new"> Add new items</Link>
           </nav>
           <Routes>
             <Route path="/new" element={<AddTodoForm onAddTodo={addTodo} />} />

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-
+import PropTypes from "prop-types";
 
 const InputWithLabel = ({
   children,//generic label for title
@@ -14,6 +14,15 @@ const InputWithLabel = ({
     inputRef.current.focus();
   }
   useEffect(focusSearch);
+  
+InputWithLabel.propTypes ={
+  children: PropTypes.object,
+  value:PropTypes.string,
+  type:PropTypes.string,
+  id:PropTypes.string,
+  onInputChange:PropTypes.func
+}
+  
   return (
     <>
       <label htmlFor={id}>{children}</label>
