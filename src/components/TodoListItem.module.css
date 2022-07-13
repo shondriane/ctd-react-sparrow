@@ -16,7 +16,7 @@ body {
 }
 
 .container {
-  border: 2px solid black;
+  
   width: 95%;
   margin: auto;
   font-size: 1.5em;
@@ -96,7 +96,7 @@ h1 {
 
 .containerTwo button {
   cursor: pointer;
-  padding: 5px;
+  padding: 3px;
   width: fit-content;
   transition: 2s;
   outline: none;
@@ -106,6 +106,7 @@ h1 {
   border-bottom-right-radius: 5px;
   margin-left: 40%;
   color: yellow;
+  
 }
 
 @media (max-width: 1643px) {
@@ -144,7 +145,7 @@ h1 {
     border: none;
   }
 }
-@media screen and (max-width: 480px) {
+@media screen and (min-width: 480px) {
   .nav {
     flex-direction: column;
   }
