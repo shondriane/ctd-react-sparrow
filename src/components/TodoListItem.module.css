@@ -3,25 +3,55 @@
 * {
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
+  
+  
 }
-.ListItem {
-  color: white;
-}
+body,p,a,u,li{
 
-body {
+  text-decoration:none;
+}
+li{
+  list-style-type: none;
+}
+.projects{
+  display: grid;
+  grid-template-columns:  1fr 1fr;
+    }
+    
+    img{
+      width:200x;
+     height: 200px;
+     border-radius:95%;
+     
+    }
+
+
+body{
   background-image: linear-gradient(to right, blue, purple);
   font-family: "Charis SIL", serif;
   color: white;
+  text-align: center;
+}
+
+.buttonP{
+  background:none;
+  border: lightpink;
+  color:yelow;
+  padding: 6px 12px;
+  border-radius:20px;
+  text-transform:uppercase;
+  box-shadow: 1px 2px 3px rgba(0,0,0,0.6);
+  display:inline-block;
 }
 
 .container {
   
-  width: 95%;
+  width: 80%;
   margin: auto;
   font-size: 1.5em;
   padding-bottom: 15px;
   padding-top: 15px;
+ 
 }
 
 .nav {
@@ -31,23 +61,28 @@ body {
   width: 100%;
   margin: 25 px 0;
   padding-bottom: 20px;
+  text-align: right;
+ 
 }
 .font {
   font-size: 1rem;
   color: white;
 }
 
-h1 {
-  font-size: 2rem;
+h1,h3,h4 {
+  font-size: 1em;
+  font-weight:normal;
+  
 }
+
 
 .user input {
   width: 80%;
   outline: none;
-  padding: 8px;
+  padding: 5px;
   border: 1px solid yellow;
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
+  border-radius: 20px;
+  
   text-align: left;
 }
 
@@ -81,8 +116,11 @@ h1 {
   border-radius: 2px;
   margin-top: 5px;
 }
+.welcome, .img{
+  text-align: center;
+}
 
-.ListItem {
+.ListItem{
   width: 50%;
   margin: auto;
   border: 2px solid black;
@@ -109,6 +147,11 @@ h1 {
   
 }
 
+.grid{
+  display: grid;
+  grid-template-columns: 3(1fr);
+}
+/*desktop styles*/
 @media (max-width: 1643px) {
   h1 {
     margin: 10px 0;
@@ -121,7 +164,23 @@ h1 {
     display: block;
     margin-left: auto;
     margin-right: 0;
-    color: yellow;
+    color: red;
+  }
+  #Run{
+    font-size: 1.5em;
+    color: magenta;
+  }
+  .img{
+    width:25px;
+    height: 25px;
+    border-radius:50%; 
+  }
+  .grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .ListItem{
+    background-color: white;
   }
 }
 
@@ -133,19 +192,26 @@ h1 {
   h1 {
     margin: 10px 0;
   }
+  
   .user {
     width: 100%;
   }
 
   .containerTwo button {
-    color: white;
+    color: yellow;
     background-color: transparent;
   }
   .container {
     border: none;
+    
   }
+  .ListItem {
+    background-color: blue;
+    color: blanchedalmond;
 }
-@media screen and (min-width: 480px) {
+}
+
+@media (min-width: 480px) {
   .nav {
     flex-direction: column;
   }
@@ -155,12 +221,19 @@ h1 {
   .user {
     width: 100%;
   }
+
+  .container{
+    width:100%;
+    text-align:center;
+  }
   .containerTwo {
     width: 100%;
     font-size: 0.5em;
   }
   .ListItem {
-    background-color: white;
+    background-color: transparent;
+    color:white;
+    font-size: 2em;
   }
   .containerTwo button {
     float: right;
@@ -170,4 +243,27 @@ h1 {
     background-color: lightyellow;
     color: blue;
   }
+  .img {
+    max-width: 50%;
+    border-radius:50px; 
+  }
+  h2{
+    text-align:center;
+  }
+  
+  .grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    
+  }
+
+.welcome{
+  text-align: center;
+  font-size: 1em;
+}
+#Run{
+  font-size: 1em;
+  color: magenta;
+}
+
 }

@@ -2,8 +2,15 @@ import React from "react";
 import AddTodoForm from "./components/AddTodoForm";
 import TodoList from "./components/TodoList";
 import style from "./components/TodoListItem.module.css"
-import {FaClipboardCheck} from 'react-icons/fa';
+import {FaRunning} from 'react-icons/fa';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Run_Like_Girl from './components/Run_Like_Girl.png';
+import Pride_Run from './components/Pride_Run.JPG';
+import Queens_Race from './components/Queens_Race.JPG';
+import Womens_half from './components/Womens_half.jpeg';
+import Brooklyn_half from './components/Brooklyn_half.JPG';
+import breathe_deep from './components/breathe_deep.png';
+
 
 
 /*Side-Effects to stores the todoList from the browser's local storage and 
@@ -39,17 +46,20 @@ function TodoContainer(todo) {
 
   /*gets data from airtable*/
   React.useEffect(() => {
-    setIsLoading(false);
-
-    function sortObjects(objectA,objectB){
-      if (objectA.Title < objectB.Title){
+    setIsLoading(true);
+    
+    function sortObjects(objectA, objectB){
+      if (objectA.fields.Title < objectB.fields.Title){
         return -1;
       }
-      if( objectA.Title === objectB.Title){
+      if( objectA.fields.Title === objectB.fields.Title){
         return 0;
       }
+  
       return 1;
-      };
+     }
+      
+       
    fetch(
         `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/todo`,
         {
@@ -61,15 +71,13 @@ function TodoContainer(todo) {
       )
       .then ((response) => response.json())
       .then((result)=>{
-       
-        setTodoList(result.records).sort(sortObjects);
-         
-         
-        setIsLoading(true);
+        setTodoList(result.records.sort(sortObjects));
+        setIsLoading(false);
       });
-    
-     
-  }, []);
+
+  },[]);
+
+  
 
   /*adds new todo list item to the existing list*/
 
@@ -117,8 +125,6 @@ function TodoContainer(todo) {
     setTodoList(newList);
   };
 
-
-
   
 
   return (
@@ -126,7 +132,7 @@ function TodoContainer(todo) {
     element*/
 
     <React.Fragment>
-      <h1> <FaClipboardCheck/> To-Do List </h1>
+      <h1> <FaRunning/> Run Girl Run </h1>
      
 
       <hr />
@@ -136,19 +142,32 @@ function TodoContainer(todo) {
         <div className = {style.container}>
           
           <nav className = {style.nav}>
+          
+            <ul>
+              <li> <a href ="#Run">2022 Completed Runs</a></li>
+            
+            </ul>
+
             <Link className={style.font} to="/">
-              {" "}
-              Current TodoList <br></br>
+              {" "} 
+              Upcoming <br></br>
             </Link>
-            <Link className={style.font}to="/new"> Add new items</Link>
+            <Link className={style.font}to="/new"> Add new Runs</Link>
           </nav>
+<section  class = {style.grid}>
+  
+  <div class ={style.welcome}>
+    <img src={Run_Like_Girl} alt="girl running"></img>
+    <h2> Upcoming Runs</h2>
+  </div>
+</section>
+
 
           <Routes>
-            <Route path="/new" element={<AddTodoForm onAddTodo={addTodo} />} />
-           <Route path="/" element= {""} /> 
+            <Route path="/new" element={<AddTodoForm onAddTodo={addTodo} />} />      
+           <Route  path="/" element= {""} />      
           </Routes>
-         
-          
+                
         </div>
        
       </BrowserRouter>
@@ -156,6 +175,29 @@ function TodoContainer(todo) {
 (
   <p> Loading ...</p>):(
     <TodoList todoList={todoList} onRemoveTodo={removeTodo} />)}
+   
+    <section id= {style.Run}>
+  <h3> Some of My Runs this Year</h3>
+  <div class = {style.projects}>
+  <a href =" ">
+    <img src={Queens_Race} alt="Queens Run"></img>
+    <h4> Queens Race </h4>
+    </a>
+    <a href =" ">
+    <img src={Womens_half} alt="Womens Half Marathon"></img>
+    <h4> Shape Womens Half Marathon </h4>
+  </a>
+  <a href =" ">
+    <img src={Pride_Run} alt="Pride Run"></img>
+    <h4> Pride Run </h4>
+  </a>
+  <a href =" ">
+    <img src={Brooklyn_half} alt="Brooklyn Half Marathon"></img>
+    <h4> Brooklyn Half </h4>
+  </a>
+</div>
+<img src ={breathe_deep} alt="Breathe Deep Run Strong Mantra"></img>
+</section>
     </React.Fragment>
   );
 }
