@@ -4,12 +4,12 @@ import TodoList from "./components/TodoList";
 import style from "./components/TodoListItem.module.css"
 import {FaRunning} from 'react-icons/fa';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import Run_Like_Girl from './components/Run_Like_Girl.png';
+import shoe from './components/shoe.svg';
 import Pride_Run from './components/Pride_Run.JPG';
 import Queens_Race from './components/Queens_Race.JPG';
 import Womens_half from './components/Womens_half.jpeg';
 import Brooklyn_half from './components/Brooklyn_half.JPG';
-import breathe_deep from './components/breathe_deep.png';
+
 
 
 
@@ -139,30 +139,42 @@ function TodoContainer(todo) {
 
       <BrowserRouter>
       
-        <div className = {style.container}>
+       
           
-          <nav className = {style.nav}>
+          <nav className = {style.nav} class={style.grid} id={style.sticky}>
+        
           
             <ul>
-              <li> <a href ="#Run">2022 Completed Runs</a></li>
-            
+            <li > <a href="/"> Home</a></li><br></br>
+              <li ><a href="#Run">Completed</a></li> 
             </ul>
-
+            <br></br>
+            
             <Link className={style.font} to="/">
-              {" "} 
-              Upcoming <br></br>
-            </Link>
-            <Link className={style.font}to="/new"> Add new Runs</Link>
+              {" "} Upcoming </Link> <br></br>
+            <Link className={style.font}to="/new"> New </Link>
           </nav>
-<section  class = {style.grid}>
+
+
+<section  class = {style.grid} id ={style.welcome}>
   
-  <div class ={style.welcome}>
-    <img src={Run_Like_Girl} alt="girl running"></img>
-    <h2> Upcoming Runs</h2>
+  <div class ={style.welcomeText}>
+    <h2> I Run Like a Girl, Try To Keep Up!</h2>
+    <p class={style.leading}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+    ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 
+    ex ea commodo consequat. </p>
+  
   </div>
+
+  <div class={style.welcomeImg}>
+  <img src={shoe} alt="pic of shoe print"></img>
+  </div>
+
 </section>
 
+<div class= {style.container}>
 
+<h3 class={style.Runlist}>Runs</h3>
           <Routes>
             <Route path="/new" element={<AddTodoForm onAddTodo={addTodo} />} />      
            <Route  path="/" element= {""} />      
@@ -176,28 +188,35 @@ function TodoContainer(todo) {
   <p> Loading ...</p>):(
     <TodoList todoList={todoList} onRemoveTodo={removeTodo} />)}
    
-    <section id= {style.Run}>
-  <h3> Some of My Runs this Year</h3>
+    <section  id= {style.Run}>
+  <h3 id="Run"> Some of My 2022 Runs</h3>
   <div class = {style.projects}>
   <a href =" ">
-    <img src={Queens_Race} alt="Queens Run"></img>
-    <h4> Queens Race </h4>
+    <img class= {style.image}src={Queens_Race} alt="Queens Run"></img>
+    <h4> Queens Race 10k </h4>
     </a>
     <a href =" ">
-    <img src={Womens_half} alt="Womens Half Marathon"></img>
+    <img class= {style.image}src={Womens_half} alt="Womens Half Marathon"></img>
     <h4> Shape Womens Half Marathon </h4>
   </a>
   <a href =" ">
-    <img src={Pride_Run} alt="Pride Run"></img>
-    <h4> Pride Run </h4>
+    <img class= {style.image} src={Pride_Run} alt="Pride Run"></img>
+    <h4> Pride Run 5k</h4>
   </a>
   <a href =" ">
-    <img src={Brooklyn_half} alt="Brooklyn Half Marathon"></img>
-    <h4> Brooklyn Half </h4>
+    <img class= {style.image} src={Brooklyn_half} alt="Brooklyn Half Marathon"></img>
+    <h4> Brooklyn Half Marathon </h4>
   </a>
 </div>
-<img src ={breathe_deep} alt="Breathe Deep Run Strong Mantra"></img>
+
 </section>
+
+<footer>
+  
+    <p class={style.copyright}> Copyright 2022 Run Girl Run</p>
+
+</footer>
+
     </React.Fragment>
   );
 }

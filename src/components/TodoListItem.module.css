@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Charis+SIL&display=swap");
 
+
+/*reset*/
 * {
   padding: 0;
-  margin: 0;
-  
-  
+  margin: 0;  
 }
 body,p,a,u,li{
 
@@ -13,12 +13,80 @@ body,p,a,u,li{
 li{
   list-style-type: none;
 }
+/*base styles */
+body{
+  background-image: linear-gradient(to right, blue, purple);
+  font-family: "Charis SIL", serif;
+  color: white;
+ overflow-x: hidden;
+}
+
+.grid{
+  display: grid;
+  grid-template-columns: repeat(8,1fr);
+  
+}
+
+
+.nav{
+margin: 0 20px;
+grid-template-columns: repeat(9,1fr);
+grid-gap: 10px;
+
+}
+
+
+#sticky{
+  position:sticky;
+  top:0;
+  position: -webkit-sticky;
+
+}
+
+.nav ul{
+  display:none;
+
+}
+
+
+#welcome{
+  padding: 0 20px 20px 20px; 
+ }
+ 
+ .welcomeText{
+   grid-column: 1/6;
+   margin-top: 35px;
+ }
+ 
+ .welcomeImg{
+  margin-top: 75px;
+   grid-column: 6/9;
+  
+ }
+ .welcomeImg img{
+  width:100%;
+
+ }
+ .welcomeText a{
+  margin: 20px 0;
+ }
 .projects{
   display: grid;
   grid-template-columns:  1fr 1fr;
+  gap: 10px;
+ 
+    }
+#Run{
+  margin-top: 70px;
+  scroll-margin-top:35px;
+}
+    .projects a{
+      text-align: center;
+      background: gray;
+      padding: 20px;
     }
     
-    img{
+    .image{
       width:200x;
      height: 200px;
      border-radius:95%;
@@ -26,23 +94,6 @@ li{
     }
 
 
-body{
-  background-image: linear-gradient(to right, blue, purple);
-  font-family: "Charis SIL", serif;
-  color: white;
-  text-align: center;
-}
-
-.buttonP{
-  background:none;
-  border: lightpink;
-  color:yelow;
-  padding: 6px 12px;
-  border-radius:20px;
-  text-transform:uppercase;
-  box-shadow: 1px 2px 3px rgba(0,0,0,0.6);
-  display:inline-block;
-}
 
 .container {
   
@@ -51,28 +102,34 @@ body{
   font-size: 1.5em;
   padding-bottom: 15px;
   padding-top: 15px;
+  margin-bottom:20px;
  
 }
 
-.nav {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  width: 100%;
-  margin: 25 px 0;
-  padding-bottom: 20px;
-  text-align: right;
- 
-}
+
+/*fonts*/
+
 .font {
-  font-size: 1rem;
-  color: white;
+  font-size: 1em;
+  color: white;  
 }
 
-h1,h3,h4 {
-  font-size: 1em;
-  font-weight:normal;
-  
+
+h1,h3 {
+  font-size: 1.2em;
+  font-weight:normal; 
+}
+
+h2{
+
+  font-size:1.6em;
+}
+h4{
+  font-size:1.1em;
+}
+.leading{
+  font-size:1.1em;
+  margin-top:15px;
 }
 
 
@@ -81,8 +138,7 @@ h1,h3,h4 {
   outline: none;
   padding: 5px;
   border: 1px solid yellow;
-  border-radius: 20px;
-  
+  border-radius: 20px; 
   text-align: left;
 }
 
@@ -116,10 +172,15 @@ h1,h3,h4 {
   border-radius: 2px;
   margin-top: 5px;
 }
-.welcome, .img{
+.welcome, .image{
   text-align: center;
+  margin-top:30px;
 }
 
+.Runlist{
+  font-size:1.5em;
+  text-align:center;
+}
 .ListItem{
   width: 50%;
   margin: auto;
@@ -130,6 +191,8 @@ h1,h3,h4 {
   size: 1.5em;
   list-style: none;
   padding-bottom: 10px;
+  margin-bottom:25px;
+
 }
 
 .containerTwo button {
@@ -147,10 +210,11 @@ h1,h3,h4 {
   
 }
 
-.grid{
+.projects{
   display: grid;
-  grid-template-columns: 3(1fr);
-}
+  grid-template-columns:  1fr 1fr;
+  scroll-margin-top: 10px;
+    }
 /*desktop styles*/
 @media (max-width: 1643px) {
   h1 {
@@ -166,27 +230,23 @@ h1,h3,h4 {
     margin-right: 0;
     color: red;
   }
-  #Run{
-    font-size: 1.5em;
-    color: magenta;
-  }
-  .img{
-    width:25px;
-    height: 25px;
+
+  .image{
+    width:200px;
+    height: 200px;
     border-radius:50%; 
   }
-  .grid{
+  .projects{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
-  .ListItem{
-    background-color: white;
-  }
+    grid-template-columns:  1fr 1fr 1fr 1fr;
+   }
+
+
 }
 
 @media (max-width: 768px) {
   .nav {
-    align-items: center;
+    align-items: right;
     flex-direction: column;
   }
   h1 {
@@ -209,14 +269,19 @@ h1,h3,h4 {
     background-color: blue;
     color: blanchedalmond;
 }
+.projects{
+  display: grid;
+  grid-template-columns:  1fr 1fr;
+    }
 }
 
-@media (min-width: 480px) {
-  .nav {
-    flex-direction: column;
-  }
+@media (max-width: 480px) {
+
+ 
+
   h1 {
     margin: 10px 0;
+  
   }
   .user {
     width: 100%;
@@ -231,7 +296,6 @@ h1,h3,h4 {
     font-size: 0.5em;
   }
   .ListItem {
-    background-color: transparent;
     color:white;
     font-size: 2em;
   }
@@ -243,7 +307,7 @@ h1,h3,h4 {
     background-color: lightyellow;
     color: blue;
   }
-  .img {
+  .image {
     max-width: 50%;
     border-radius:50px; 
   }
@@ -251,19 +315,15 @@ h1,h3,h4 {
     text-align:center;
   }
   
-  .grid{
+  .projects{
     display: grid;
-    grid-template-columns: 1fr;
-    
-  }
+    grid-template-columns:  1fr;
+      }
 
-.welcome{
-  text-align: center;
-  font-size: 1em;
-}
 #Run{
-  font-size: 1em;
+  font-size: 2em;
   color: magenta;
+  
 }
 
 }
